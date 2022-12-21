@@ -1,6 +1,8 @@
 # JsonPath
 
-`JsonPath` is an extension for [Visual Studio Code]() that allows the user to use the [JsonPath]() syntax to filter and view their json documents in the editor.
+`JsonPath` is an extension for [Visual Studio Code](https://code.visualstudio.com/) that allows the user to use the JsonPath syntax to filter and view their json documents in the editor.
+
+However, since there is no official spec for JsonPath, we will be using [JSONPath Plus](https://www.npmjs.com/package/jsonpath-plus).
 
 ## Features
 
