@@ -1,6 +1,8 @@
 {
     "name": "jsonpath-extension",
     "displayName": "JsonPath",
+    "publisher": "AbstractUmbra",
+    "license": "SEE LICENSE IN <LICENSE>",
     "description": "A live and interactive JsonPath viewer.",
     "version": "0.0.1",
     "repository": {
@@ -11,20 +13,33 @@
         "vscode": "^1.74.0"
     },
     "categories": [
-        "Other"
+        "Visualization"
     ],
-    "activationEvents": [],
+    "activationEvents": [
+        "onLanguage:json"
+    ],
     "main": "./out/extension.js",
     "contributes": {
         "customEditors": [
             {
-                "viewType": "jsonPath.jsonPath",
+                "viewType": "jsonPath.jsonpath",
                 "displayName": "JsonPath",
                 "selector": [
                     {
                         "filenamePattern": "*.json"
                     }
                 ]
+            }
+        ],
+        "commands": [
+            {
+                "command": "jsonPath.openWindow",
+                "title": "Open JsonPath window",
+                "category": "JsonPath",
+                "icon": {
+                    "light": "$(find-replace)",
+                    "dark": "$(find-replace)"
+                }
             }
         ]
     },

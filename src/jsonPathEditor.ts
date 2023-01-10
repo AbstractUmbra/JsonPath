@@ -9,7 +9,7 @@ export class JsonPathEditorProvider implements vscode.CustomTextEditorProvider {
         return providerRegistration;
     }
 
-    private static readonly viewType = 'jsonPath.json';
+    private static readonly viewType = 'jsonPath.jsonpath';
 
     constructor(private readonly context: vscode.ExtensionContext) { }
 
@@ -69,7 +69,7 @@ export class JsonPathEditorProvider implements vscode.CustomTextEditorProvider {
         edit.replace(
             document.uri,
             new vscode.Range(0, 0, document.lineCount, 0),
-            JSON.stringify(json, null, 2));
+            JSON.stringify(json, null, 4));
 
         return vscode.workspace.applyEdit(edit);
     }
@@ -77,7 +77,7 @@ export class JsonPathEditorProvider implements vscode.CustomTextEditorProvider {
     private getHtmlForWebview(webview: vscode.Webview): string {
         // Local path to script and css for the webview
         const scriptUri = webview.asWebviewUri(vscode.Uri.joinPath(
-            this.context.extensionUri, 'media', 'catScratch.js'));
+            this.context.extensionUri, 'media', 'jsonPath.js'));
 
         const styleResetUri = webview.asWebviewUri(vscode.Uri.joinPath(
             this.context.extensionUri, 'media', 'reset.css'));
@@ -86,7 +86,7 @@ export class JsonPathEditorProvider implements vscode.CustomTextEditorProvider {
             this.context.extensionUri, 'media', 'vscode.css'));
 
         const styleMainUri = webview.asWebviewUri(vscode.Uri.joinPath(
-            this.context.extensionUri, 'media', 'catScratch.css'));
+            this.context.extensionUri, 'media', 'jsonPath.css'));
 
         // Use a nonce to whitelist which scripts can be run
         const nonce = getNonce();
@@ -105,12 +105,12 @@ export class JsonPathEditorProvider implements vscode.CustomTextEditorProvider {
 				<link href="${styleResetUri}" rel="stylesheet" />
 				<link href="${styleVSCodeUri}" rel="stylesheet" />
 				<link href="${styleMainUri}" rel="stylesheet" />
-				<title>Cat Scratch</title>
+				<title>Json Path</title>
 			</head>
 			<body>
 				<div class="notes">
 					<div class="add-button">
-						<button>Scratch!</button>
+						<button>Evaluate</button>
 					</div>
 				</div>
 

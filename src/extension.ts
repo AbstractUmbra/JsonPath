@@ -2,6 +2,7 @@
 // Import the module and reference it with the alias vscode in your code below
 import * as vscode from 'vscode';
 import { JsonPathEditorProvider } from './jsonPathEditor';
+import { openWindow } from './jsonPathCommand';
 
 
 // This method is called when your extension is activated
@@ -12,7 +13,10 @@ export function activate(context: vscode.ExtensionContext) {
     // This line of code will only be executed once when your extension is activated
     console.log('Congratulations, your extension "JsonPath" is now active!');
 
+    let disposableCommand = vscode.commands.registerCommand('jsonPath.openWindow', openWindow);
+
     context.subscriptions.push(JsonPathEditorProvider.register(context));
+    context.subscriptions.push(disposableCommand);
 }
 
 // This method is called when your extension is deactivated
